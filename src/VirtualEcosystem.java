@@ -4,23 +4,40 @@
  * @since       2015-04-02
  */
 
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.ArrayList; // to use ArrayList
 
-public abstract class VirtualEcosystem {
-    /**
-     * Main Function
-     *
-     * Handles initialization, movement, feeding, reproduction, and printing of the virtual ecosystem.
-     *
-     */
-    public static void main(String[] args) {
+public class VirtualEcosystem extends JFrame implements  Serializable{
 
+    private static Plain[][] plain;
+    private static ArrayList<Animal> carnivoreArr;
+    private static ArrayList<Animal> herbivoreArr;
+    private static ArrayList<Plant> plantArr;
+
+    private static boolean running = false;
+    private static VirtualEcosystem instance;
+
+    private static JTextArea textArea;
+
+    private static String output;
+
+    public VirtualEcosystem(){
+        initComponents();
+        populateWorld();
+    }
+
+    public static void populateWorld(){
         // Adds the objects in respective ArrayLists
-        ArrayList<Animal> carnivoreArr = new ArrayList<Animal>();
+        carnivoreArr = new ArrayList<Animal>();
         for (int i = 0; i < 20; i++)
             carnivoreArr.add(new Carnivore());
 
-        ArrayList<Animal> herbivoreArr = new ArrayList<Animal>();
+        herbivoreArr = new ArrayList<Animal>();
         for (int i = 0; i < 20; i++)
             herbivoreArr.add(new Herbivore());
 
@@ -28,12 +45,12 @@ public abstract class VirtualEcosystem {
         for (int i = 0; i < 20; i++)
             obstacleArr.add(new Obstacle());
 
-        ArrayList<Plant> plantArr = new ArrayList<Plant>();
+        plantArr = new ArrayList<Plant>();
         for (int i = 0; i < 20; i++)
             plantArr.add(new Plant());
 
         // Create a 2D array that stores the super class
-        Plain[][] plain = new Plain[32][32];
+        plain = new Plain[32][32];
 
         // Initializes the 2D array with object FreeSoace
         for (int row = 0; row < 32; row++) {
@@ -60,19 +77,25 @@ public abstract class VirtualEcosystem {
             if (plain[p.getX()][p.getY()] instanceof FreeSpace)
                 plain[p.getX()][p.getY()] = p;
         }
+    }
 
-        // Main loop for iteration
-        int k = 1;
-        while(k <= 30) {
+    public static void main(String[] args) {
+        instance = new VirtualEcosystem();
+    }
 
-            System.out.println("\nIteration: " + k);
+    private void runProgram(){
+        running = true;
+
+        while(running) {
+
+            output = "";
 
             // Print the characters of the plain
             for (int i = 0; i < 32; i++) {
                 for (int j = 0; j < 32; j++) {
-                    plain[i][j].printSymbol();
+                    output += plain[i][j].getSymbol();
                 }
-                System.out.println();
+                output +="\n";
             }
 
             // Loop that handles the interaction of Carnivores with other objects
@@ -337,10 +360,181 @@ public abstract class VirtualEcosystem {
             else
                 plantArr.remove(plantArr.size()-1);
 
+            output = output.trim();
+            textArea.setText(output);
 
             // Iterate
-            ++k;
+            try {
+                Thread.sleep(2000);
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
         }
+    }
+
+    private void saveProgram() throws IOException {
+        FileOutputStream f_out = new FileOutputStream("saveFile.data");
+
+        ObjectOutputStream obj_out = new ObjectOutputStream (f_out);
+
+        obj_out.writeObject (instance);
+    }
+
+    private void loadProgram() throws IOException, ClassNotFoundException{
+        FileInputStream f_in = new FileInputStream("saveFile.data");
+
+        ObjectInputStream obj_in = new ObjectInputStream (f_in);
+
+        Object obj = obj_in.readObject();
+
+        if(obj instanceof VirtualEcosystem)
+        {
+            instance = (VirtualEcosystem) obj;
+            textArea.setText(instance.output);
+        }
+
+
+    }
+
+    private void initComponents() {
+
+
+        JPanel contentPane = new JPanel();
+        GridBagLayout layout = new GridBagLayout();
+
+        contentPane.setLayout(layout);
+        GridBagConstraints constraints = new GridBagConstraints();
+
+        constraints.fill = GridBagConstraints.NORTH;
+        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.insets = new Insets(1,2,1,2);
+
+
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridwidth = 100;
+        constraints.gridheight = 100;
+        textArea = new JTextArea(33, 32);
+        textArea.setBackground(new Color(142,251,153));
+        textArea.setAlignmentX(CENTER_ALIGNMENT);
+        textArea.setFont(new Font("monospaced", Font.PLAIN, 12));
+        textArea.setEditable(false);
+
+        layout.setConstraints(textArea, constraints);
+        contentPane.add(textArea);
+
+
+        constraints.gridx = 1;
+        constraints.gridy = 101;
+        constraints.gridwidth = 3;
+        constraints.gridheight = 1;
+        constraints.insets = new Insets(10,0,0,0);
+
+        JButton startB = new JButton("Start");
+        startB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Thread t = new Thread() {
+                    @Override
+                    public void run(){
+                        runProgram();
+                    }
+                };
+                t.start();
+            }
+        });
+
+        layout.setConstraints(startB, constraints);
+        contentPane.add(startB);
+
+        constraints.gridx = 7;
+        constraints.gridy = 101;
+        constraints.gridwidth = 3;
+        constraints.gridheight = 1;
+
+        JButton stopB = new JButton("Stop");
+        stopB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                running = false;
+            }
+        });
+
+        layout.setConstraints(stopB, constraints);
+        contentPane.add(stopB);
+
+        constraints.gridx = 11;
+        constraints.gridy = 101;
+        constraints.gridwidth = 3;
+        constraints.gridheight = 1;
+
+        JButton saveB = new JButton("Save");
+        saveB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    saveProgram();
+                    JOptionPane.showMessageDialog(null, "Successfully saved into saveFile.data");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        layout.setConstraints(saveB, constraints);
+        contentPane.add(saveB);
+
+        constraints.gridx = 15;
+        constraints.gridy = 101;
+        constraints.gridwidth = 3;
+        constraints.gridheight = 1;
+
+        JButton loadB = new JButton("Load");
+        loadB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    loadProgram();
+                    JOptionPane.showMessageDialog(null, "Successfully loaded from saveFile.data");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                } catch (ClassNotFoundException e2){
+                    e2.printStackTrace();
+                }
+            }
+        });
+
+        layout.setConstraints(loadB, constraints);
+        contentPane.add(loadB);
+
+        constraints.gridx = 19;
+        constraints.gridy = 101;
+        constraints.gridwidth = 3;
+        constraints.gridheight = 1;
+
+        JButton newB = new JButton("New Life");
+        newB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textArea.setText("");
+                populateWorld();
+            }
+        });
+
+        layout.setConstraints(newB, constraints);
+        contentPane.add(newB);
+
+        contentPane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        add(contentPane);
+
+
+        contentPane.setBackground(new Color(32,178,170));
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        pack();
+        setVisible(true);
+
+
     }
 
 
