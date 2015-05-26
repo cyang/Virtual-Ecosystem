@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 /**
  * @author      Christopher Yang <cyang001@citymail.cuny.edu>
- * @version     1.0
+ * @version     1.8
  * @since       2015-04-02
  */
 
