@@ -1,10 +1,12 @@
+import java.io.Serializable;
+
 /**
  * @author      Christopher Yang <cyang001@citymail.cuny.edu>
  * @version     1.0
  * @since       2015-04-02
  */
 
-public abstract class Plain {
+public abstract class Plain implements Serializable {
     /** symbol holds the character */
     private char symbol;
 
