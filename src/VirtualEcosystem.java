@@ -1,10 +1,3 @@
-/**
- * @author      Christopher Yang <cyang001@citymail.cuny.edu>
- * @version     1.0
- * @since       2015-04-02
- */
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,23 +5,28 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList; // to use ArrayList
 
+/**
+ * @author      Christopher Yang <cyang001@citymail.cuny.edu>
+ * @version     1.8
+ * @since       2015-04-02
+ */
+
 public class VirtualEcosystem extends JFrame implements Serializable{
+
+    // Member fields
     private Plain[][] plain;
     private ArrayList<Animal> carnivoreArr;
     private ArrayList<Animal> herbivoreArr;
     private ArrayList<Plant> plantArr;
     private ArrayList<Obstacle> obstacleArr;
-
+    private String output;
     private boolean running = false;
-    private static VirtualEcosystem instance;
 
+    private static VirtualEcosystem instance;
     private static JTextArea textArea;
 
-    private String output;
-
-    public VirtualEcosystem(){
-        initComponents();
-    }
+    // State of the program
+    private static String state = "Stop";
 
     public void populateWorld(){
         // Adds the objects in respective ArrayLists
@@ -76,11 +74,6 @@ public class VirtualEcosystem extends JFrame implements Serializable{
             if (this.plain[p.getX()][p.getY()] instanceof FreeSpace)
                 this.plain[p.getX()][p.getY()] = p;
         }
-    }
-
-    public static void main(String[] args) {
-        instance = new VirtualEcosystem();
-        instance.populateWorld();
     }
 
     private void runProgram(){
@@ -372,28 +365,27 @@ public class VirtualEcosystem extends JFrame implements Serializable{
     }
 
     private void saveProgram() throws IOException {
+
+        // Write to saveFile.data with ObjectOutputStream of a serialized object: instance
         FileOutputStream f_out = new FileOutputStream("saveFile.data");
-
         ObjectOutputStream obj_out = new ObjectOutputStream (f_out);
-
         obj_out.writeObject (instance);
     }
 
     private void loadProgram() throws IOException, ClassNotFoundException{
+
+        // Read object from saveFile.data
         FileInputStream f_in = new FileInputStream("saveFile.data");
-
         ObjectInputStream obj_in = new ObjectInputStream (f_in);
-
         Object obj = obj_in.readObject();
 
-
+        // Cast and assign the object back to the instance
         instance = (VirtualEcosystem) obj;
 
         textArea.setText(instance.output);
-
-
     }
 
+    // GUI
     private void initComponents() {
 
 
@@ -431,14 +423,17 @@ public class VirtualEcosystem extends JFrame implements Serializable{
         startB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Thread t = new Thread() {
-                    @Override
-                    public void run(){
-                        textArea.setBackground(new Color(142,251,153));
-                        instance.runProgram();
-                    }
-                };
-                t.start();
+                if(state.equals("Stop")) {
+                    Thread t = new Thread() {
+                        @Override
+                        public void run() {
+                            textArea.setBackground(new Color(142, 251, 153));
+                            instance.runProgram();
+                        }
+                    };
+                    t.start();
+                    state = "Start";
+                }
             }
         });
 
@@ -454,8 +449,11 @@ public class VirtualEcosystem extends JFrame implements Serializable{
         stopB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textArea.setBackground(new Color(251, 82, 67));
-                instance.running = false;
+                if(state.equals("Start")) {
+                    textArea.setBackground(new Color(251, 82, 67));
+                    instance.running = false;
+                    state = "Stop";
+                }
             }
         });
 
@@ -471,12 +469,16 @@ public class VirtualEcosystem extends JFrame implements Serializable{
         saveB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    saveProgram();
-                    JOptionPane.showMessageDialog(null, "Successfully saved into saveFile.data");
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                if (state.equals("Stop")) {
+                    try {
+                        saveProgram();
+                        JOptionPane.showMessageDialog(null, "Successfully saved into saveFile.data");
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
+                else
+                    JOptionPane.showMessageDialog(null, "Stop the program first before saving!");
             }
         });
 
@@ -492,15 +494,20 @@ public class VirtualEcosystem extends JFrame implements Serializable{
         loadB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    loadProgram();
-                    JOptionPane.showMessageDialog(null, "Successfully loaded from saveFile.data");
-                    populateWorld();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                } catch (ClassNotFoundException e2){
-                    e2.printStackTrace();
+                if(state.equals("Stop")) {
+                    try {
+                        loadProgram();
+                        JOptionPane.showMessageDialog(null, "Successfully loaded from saveFile.data");
+                        textArea.setBackground(new Color(255, 255, 255));
+
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    } catch (ClassNotFoundException e2) {
+                        e2.printStackTrace();
+                    }
                 }
+                else
+                    JOptionPane.showMessageDialog(null, "Stop the program first before loading!");
             }
         });
 
@@ -516,8 +523,14 @@ public class VirtualEcosystem extends JFrame implements Serializable{
         newB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textArea.setText("");
-                instance.populateWorld();
+                if(state.equals("Stop")) {
+                    textArea.setText("");
+                    instance.populateWorld();
+                    JOptionPane.showMessageDialog(null, "Success! Press Start to begin the new life");
+                    textArea.setBackground(new Color(255, 255, 255));
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "Stop the program first before beginning a new one!");
             }
         });
 
@@ -537,5 +550,13 @@ public class VirtualEcosystem extends JFrame implements Serializable{
 
     }
 
+    public VirtualEcosystem(){
+        initComponents();
+    }
+
+    public static void main(String[] args) {
+        instance = new VirtualEcosystem();
+        instance.populateWorld();
+    }
 
 }
