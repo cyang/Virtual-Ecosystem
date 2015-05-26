@@ -412,7 +412,6 @@ public class VirtualEcosystem extends JFrame implements Serializable{
         layout.setConstraints(textArea, constraints);
         contentPane.add(textArea);
 
-
         constraints.gridx = 1;
         constraints.gridy = 101;
         constraints.gridwidth = 3;
@@ -424,6 +423,9 @@ public class VirtualEcosystem extends JFrame implements Serializable{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(state.equals("Stop")) {
+
+                    // Use a thread so that the program does not remain stuck inside the loop of runProgram()
+                    // Gives access to stopB
                     Thread t = new Thread() {
                         @Override
                         public void run() {

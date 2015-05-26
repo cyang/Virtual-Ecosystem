@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f12d683-fe39-43e0-b364-d907cdc9ab0b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VirtualEcosystem/VirtualEcosystem.class" afterPath="$PROJECT_DIR$/out/production/VirtualEcosystem/VirtualEcosystem.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animal.java" afterPath="$PROJECT_DIR$/src/Animal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Carnivore.java" afterPath="$PROJECT_DIR$/src/Carnivore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FreeSpace.java" afterPath="$PROJECT_DIR$/src/FreeSpace.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Herbivore.java" afterPath="$PROJECT_DIR$/src/Herbivore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Obstacle.java" afterPath="$PROJECT_DIR$/src/Obstacle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Plain.java" afterPath="$PROJECT_DIR$/src/Plain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Plant.java" afterPath="$PROJECT_DIR$/src/Plant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/VirtualEcosystem.java" afterPath="$PROJECT_DIR$/src/VirtualEcosystem.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="VirtualEcosystem.iws" />
@@ -38,17 +31,17 @@
       <file leaf-file-name="Plain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Plain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
+            <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1500">
               <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Animal.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Animal.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Animal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.020689655" vertical-offset="15" max-vertical-offset="2445">
+            <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="2445">
               <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
               <folding />
             </state>
@@ -105,18 +98,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VirtualEcosystem.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VirtualEcosystem.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/VirtualEcosystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
-              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+            <state vertical-scroll-proportion="1.1034483" vertical-offset="340" max-vertical-offset="2970">
+              <caret line="427" column="44" selection-start-line="427" selection-start-column="44" selection-end-line="427" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#populateWorld#0;class#VirtualEcosystem#0" expanded="false" />
                 <element signature="method#runProgram#0;class#VirtualEcosystem#0" expanded="false" />
                 <element signature="method#saveProgram#0;class#VirtualEcosystem#0" expanded="false" />
                 <element signature="method#loadProgram#0;class#VirtualEcosystem#0" expanded="false" />
-                <element signature="method#initComponents#0;class#VirtualEcosystem#0" expanded="false" />
                 <element signature="method#main#0;class#VirtualEcosystem#0" expanded="false" />
               </folding>
             </state>
@@ -141,7 +133,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/VirtualEcosystem.java" />
         <option value="$PROJECT_DIR$/src/Plain.java" />
         <option value="$PROJECT_DIR$/src/FreeSpace.java" />
         <option value="$PROJECT_DIR$/src/Plant.java" />
@@ -149,6 +140,7 @@
         <option value="$PROJECT_DIR$/src/Herbivore.java" />
         <option value="$PROJECT_DIR$/src/Obstacle.java" />
         <option value="$PROJECT_DIR$/src/Animal.java" />
+        <option value="$PROJECT_DIR$/src/VirtualEcosystem.java" />
       </list>
     </option>
   </component>
@@ -448,7 +440,13 @@
       <option name="project" value="LOCAL" />
       <updated>1432600545958</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update version">
+      <created>1432600587620</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1432600587620</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -499,7 +497,8 @@
     <MESSAGE value="Need to fix load" />
     <MESSAGE value="Save and load works correctly" />
     <MESSAGE value="Add comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add comments" />
+    <MESSAGE value="Update version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -570,7 +569,6 @@
             <element signature="method#runProgram#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#saveProgram#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#loadProgram#0;class#VirtualEcosystem#0" expanded="false" />
-            <element signature="method#initComponents#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#main#0;class#VirtualEcosystem#0" expanded="false" />
           </folding>
         </state>
@@ -642,7 +640,6 @@
             <element signature="method#runProgram#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#saveProgram#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#loadProgram#0;class#VirtualEcosystem#0" expanded="false" />
-            <element signature="method#initComponents#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#main#0;class#VirtualEcosystem#0" expanded="false" />
           </folding>
         </state>
@@ -714,7 +711,6 @@
             <element signature="method#runProgram#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#saveProgram#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#loadProgram#0;class#VirtualEcosystem#0" expanded="false" />
-            <element signature="method#initComponents#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#main#0;class#VirtualEcosystem#0" expanded="false" />
           </folding>
         </state>
@@ -794,7 +790,6 @@
             <element signature="method#runProgram#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#saveProgram#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#loadProgram#0;class#VirtualEcosystem#0" expanded="false" />
-            <element signature="method#initComponents#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#main#0;class#VirtualEcosystem#0" expanded="false" />
           </folding>
         </state>
@@ -804,6 +799,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="41001" max-vertical-offset="45810">
           <caret line="2851" column="18" selection-start-line="2851" selection-start-column="18" selection-end-line="2851" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Plant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="615">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Herbivore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Animal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="2445">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Obstacle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -824,14 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Plant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="615">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Carnivore.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
@@ -840,43 +859,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Herbivore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Obstacle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/VirtualEcosystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        <state vertical-scroll-proportion="1.1034483" vertical-offset="340" max-vertical-offset="2970">
+          <caret line="427" column="44" selection-start-line="427" selection-start-column="44" selection-end-line="427" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#populateWorld#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#runProgram#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#saveProgram#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#loadProgram#0;class#VirtualEcosystem#0" expanded="false" />
-            <element signature="method#initComponents#0;class#VirtualEcosystem#0" expanded="false" />
             <element signature="method#main#0;class#VirtualEcosystem#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Animal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.020689655" vertical-offset="15" max-vertical-offset="2445">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
